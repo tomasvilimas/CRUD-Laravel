@@ -13,10 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::get('/about', function () {
     return view('about');
+})->name('about');
+
+Route::get('/1', function () {
+    return "<h1>Hello</h1>";
 });
+
+// /{1} ;; /{jonas}
+Route::get('/{text}', function($x) {
+    return "Sveikas, "  . $x;
+});
+
+

@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
+@section('content')
 
-        <title>Laravel</title>
 
-       
-        
-        <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <p> Hello </p>
-    </body>
-</html>
- 
+<p> Hello </p>
+
+{{-- php single line code (multiline expressions do not work), like 2 == 2 ? "Equals" : "Does not equal" --}}
+    <h1>{{ 3 == 2 ? "Equals" : "Does not equal" }}</h1>
+
+
+  @endsection  
