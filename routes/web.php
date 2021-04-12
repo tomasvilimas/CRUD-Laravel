@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Route::get('/blogposts', function () {})->name('blogposts/index');
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,8 +30,27 @@ Route::get('/1', function () {
 });
 
 // /{1} ;; /{jonas}
-Route::get('/{text}', function($x) {
-    return "Sveikas, "  . $x;
-});
+// Route::get('/{text}', function($x) {
+//     return "Sveikas, "  . $x;
+// });
 
+// Route::get('/posts', 'App\Http\Controllers\BlogPostController@index');
+// Route::get('/posts/{id}', 'App\Http\Controllers\BlogPostController@show');
 
+Route::get('/posts', [BlogPostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{id}', [BlogPostController::class, 'show'])->name('posts.show');
+Route::post('/posts', [BlogPostController::class, 'store'])->name('posts.store');
+
+// Route::get('/db', function () {
+//     var_dump(DB::connection()->getPdo());
+//  })->name('testdb');
+
+// use App\Models\BlogPost;
+// Route::get('/bp', function () {
+//     $bp = new BlogPost();
+//     $bp->title = "Bp 1";
+//     $bp->text = "Bp text 1";
+//     $bp->save();
+//     return BlogPost::where('title', 'Bp 1')->first();
+//     // return BlogPost::all();
+// });
