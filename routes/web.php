@@ -40,6 +40,11 @@ Route::get('/1', function () {
 Route::get('/posts', [BlogPostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{id}', [BlogPostController::class, 'show'])->name('posts.show');
 Route::post('/posts', [BlogPostController::class, 'store'])->name('posts.store');
+Route::delete('/posts/{id}', [BlogPostController::class, 'destroy'])->name('posts.destroy');
+Route::put('/posts/{id}', [BlogPostController::class, 'update'])->name('posts.update');
+Route::post('/posts/{id}/comments', [BlogPostController::class, 'storePostComment'])->name('posts.comments.store');
+
+
 
 // Route::get('/db', function () {
 //     var_dump(DB::connection()->getPdo());
