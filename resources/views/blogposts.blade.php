@@ -22,8 +22,11 @@
     @foreach ($posts as $post)
         <h1>{{ $post['title'] }}</h1>
         <p>{{ $post['text'] }}</p>
+        
+        
         <p style="font-size: 10px">Comment count: {{ count($post->comments) }} 
             | <a href="{{ route('posts.show', $post['id']) }}">View post details and comment on it</a></p>
+            
 
 
         {{-- <form action="{{ route('posts.destroy', $post['id']) }}" method="POST">

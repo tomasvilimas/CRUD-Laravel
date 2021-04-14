@@ -9,6 +9,12 @@ use \App\Models\Blogpost;
 
 class BlogPostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('blogposts', ['posts' =>Blogpost::all()]);

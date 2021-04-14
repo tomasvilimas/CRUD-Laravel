@@ -59,3 +59,7 @@ Route::post('/posts/{id}/comments', [BlogPostController::class, 'storePostCommen
 //     return BlogPost::where('title', 'Bp 1')->first();
 //     // return BlogPost::all();
 // });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
