@@ -16,6 +16,12 @@
         <a class="nav-link" href="{{ route('posts.index')}}">Projektai</a>
       </li>
 
+    </div>
+    {{ Auth::user()['name'] }}
+</div>
+
+
+
         
       </ul>
     </div>

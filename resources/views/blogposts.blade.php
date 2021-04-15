@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 
 
@@ -19,14 +19,65 @@
         <p style="color: red"><b>{{ session('status_error') }}</b></p>
     @endif
     <br>
-    @foreach ($posts as $post)
-        <h1>{{ $post['title'] }}</h1>
-        <p>{{ $post['text'] }}</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Projekto pavadinimas</th>
+            <th scope="col">Darbuotojai</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($posts as $post)
+            <tr>
+                <th scope="row">{{ $post['id'] }}</th>
+                <td>
+                    {{ $post['title'] }}
+                </td>
+                <td>
+                    
+                    @foreach ($post->comments as $comment)
+                        {{ $comment['text'] }}{{ $loop->last ? '' : ', ' }}
+                    @endforeach
+                </td>
+                <td>
+                    @if (auth()->check())
+                    <div class="btn-group" style="overflow: auto">
+                        <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}" method="POST">
+                            @method('DELETE') @csrf
+                            <input class="btn btn-danger" type="submit" value="DELETE"> 
+                        </form>
+                        &nbsp;
+                        <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
+                            <input class="btn btn-primary" type="submit" value="UPDATE">
+                        </form>
+                    </div>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+   
         
         
-        <p style="font-size: 10px">Comment count: {{ count($post->comments) }} 
-            | <a href="{{ route('posts.show', $post['id']) }}">View post details and comment on it</a></p>
-            
+        {{-- <p style="font-size: 10px">Comment count: {{ count($post->comments) }} 
+            | <a href="{{ route('posts.show', $post['id']) }}">View post details and comment on it</a></p> --}}
+       
 
 
         {{-- <form action="{{ route('posts.destroy', $post['id']) }}" method="POST">
@@ -36,6 +87,7 @@
         <form action="{{ route('posts.show', $post['id']) }}" method="GET">
             <input class="btn btn-primary" type="submit" value="UPDATE">
         </form> --}}
+        {{-- @if (auth()->check())
         <div class="btn-group" style="overflow: auto">
             <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}" method="POST">
                 @method('DELETE') @csrf
@@ -46,10 +98,11 @@
                 <input class="btn btn-primary" type="submit" value="UPDATE">
             </form>
         </div>
-
+        @endif --}}
+    
 
         <hr>
-    @endforeach
+   
 
     <br>
 
@@ -61,13 +114,9 @@
             <div style="color: red">{{ $message }}</div>
         @enderror
 
-        <input type="text" id="title" name="title"><br>
-        //placeholder="Projekto pavadinimas" Required
-        <label for="text">Post text:</label><br>
-        @error('text')
-            <div style="color: red">{{ $message }}</div>
-        @enderror
-        <input type="text" id="text" name="text"><br><br>
+        <input type="text" id="title" name="title" placeholder="Projekto pavadinimas" Required><br>
+        
+        
         <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 @endsection

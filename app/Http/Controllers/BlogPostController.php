@@ -10,10 +10,13 @@ use \App\Models\Blogpost;
 class BlogPostController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+
+    
 
     public function index()
     {
@@ -32,12 +35,12 @@ class BlogPostController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|unique:blogposts',
-            'text' => 'required',
+            
         ]);
 
         $bp = new Blogpost();
         $bp->title = $request['title'];
-        $bp->text = $request['text'];
+       
         // if ($bp->title == NULL or $bp->text == NULL)
         //     return redirect('/posts')->with('status_error', 'Post was not created!');
         return ($bp->save() == 1) ?
@@ -56,11 +59,11 @@ class BlogPostController extends Controller
         // [Dėmesio] validacijoje unique turi būti teisingas lentelės pavadinimas!
                 $this->validate($request, [
                     'title' => 'required|unique:blogposts,title,'.$id.',id',
-                    'text' => 'required',
+                    
                 ]); 
                 $bp = Blogpost::find($id);
                 $bp->title = $request['title'];
-                $bp->text = $request['text'];
+               
                 return ($bp->save() !== 1) ? 
                     redirect('/posts/'.$id)->with('status_success', 'Post updated!') : 
                     redirect('/posts/'.$id)->with('status_error', 'Post was not updated!');

@@ -33,6 +33,18 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                 
+                            <li class="nav-item {{ Request::routeIs('index') ? 'active' : '' }}">
+                              <a class="nav-link" href="/">Home</span></a>
+                            </li>
+                            <li class="nav-item {{ Request::routeIs('about') ? 'active' : '' }}">
+                              <a class="nav-link" href="{{ route('about') }}">About</a>
+                            </li>
+                            
+                          <li class="nav-item {{ Request::routeIs('posts.index') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('posts.index')}}">Projektai</a>
+                          </li>
+                          
 
                     </ul>
 
@@ -75,9 +87,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <div class="container">
             @yield('content')
-        </main>
+        </div>
+
     </div>
 </body>
 </html>
