@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Models\Blogpost;
+use Illuminate\Support\Facades\Gate;
 
 
 class BlogPostController extends Controller
@@ -40,23 +41,31 @@ class BlogPostController extends Controller
 
         $bp = new Blogpost();
         $bp->title = $request['title'];
+        $bp->user_id = auth()->user()->id; // Trying to get property 'id' of non-object
        
         // if ($bp->title == NULL or $bp->text == NULL)
         //     return redirect('/posts')->with('status_error', 'Post was not created!');
         return ($bp->save() == 1) ?
-            redirect('/posts')->with('status_success', 'Post created!') :
-            redirect('/posts')->with('status_error', 'Post was not created!');
+            redirect('/posts')->with('status_success', 'Projektas sukurtas!') :
+            redirect('/posts')->with('status_error', 'Projektas nesukurtas!');
     }
 
 
     public function destroy($id)
     {
+        
+        if(Gate::denies('delete-post', Blogpost::find($id))) // useris paduodamas automatiškai!!!
+        return redirect()->back()->with('status_error', 'Negalite ištrinti šio projekto!');
+
         Blogpost::destroy($id);
-        return redirect('/posts')->with('status_success', 'Post deleted!');
-    }
+        return redirect('/posts')->with('status_success', 'Projektas ištrintas!');
+    } 
 
     public function update($id, Request $request){
         // [Dėmesio] validacijoje unique turi būti teisingas lentelės pavadinimas!
+        if(Gate::denies('update-post', Blogpost::find($id))) // useris paduodamas automatiškai!!!
+        return redirect()->back()->with('status_error', 'Negalite ištrinti šio projekto!');
+
                 $this->validate($request, [
                     'title' => 'required|unique:blogposts,title,'.$id.',id',
                     
@@ -65,8 +74,8 @@ class BlogPostController extends Controller
                 $bp->title = $request['title'];
                
                 return ($bp->save() !== 1) ? 
-                    redirect('/posts/'.$id)->with('status_success', 'Post updated!') : 
-                    redirect('/posts/'.$id)->with('status_error', 'Post was not updated!');
+                    redirect('/posts/'.$id)->with('status_success', 'Projektas atnaujintas!') : 
+                    redirect('/posts/'.$id)->with('status_error', 'Projektas nebuvo atnaujintas!');
             }
 
             public function storePostComment($id, Request $request){
@@ -75,7 +84,7 @@ class BlogPostController extends Controller
                 $cm = new \App\Models\Comment();
                 $cm->text = $request['text'];
                 $bp->comments()->save($cm); // priskiriame naują komentarą blogpostui
-                return redirect()->back()->with('status_success', 'Comment added!');
+                return redirect()->back()->with('status_success', 'Darbuotojas pridėtas!');
             }
         
         

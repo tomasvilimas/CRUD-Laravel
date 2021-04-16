@@ -28,6 +28,7 @@
             <th scope="col">Projekto pavadinimas</th>
             <th scope="col">Darbuotojai</th>
             <th scope="col">Actions</th>
+            <th scope="col">Autorius</th>
         </tr>
     </thead>
     <tbody>
@@ -42,18 +43,26 @@
                     @foreach ($post->comments as $comment)
                         {{ $comment['text'] }}{{ $loop->last ? '' : ', ' }}
                     @endforeach
+                    
                 </td>
                 <td>
                     @if (auth()->check())
+                    
                     <div class="btn-group" style="overflow: auto">
+                        @if (auth()->user()->id === $post['user_id'])
                         <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}" method="POST">
                             @method('DELETE') @csrf
                             <input class="btn btn-danger" type="submit" value="DELETE"> 
                         </form>
+                        
                         &nbsp;
                         <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
                             <input class="btn btn-primary" type="submit" value="UPDATE">
                         </form>
+                        @endif
+                        <td>
+                        {{ $post['user']['name'] }} </p>
+                        </td>
                     </div>
                     @endif
                 </td>
@@ -105,11 +114,11 @@
    
 
     <br>
-
+    @if (auth()->check())
     <form method="POST" action="/posts">
         @csrf
 
-        <label for="title">Post title:</label><br>
+        <label for="title"></label><br>
         @error('title')
             <div style="color: red">{{ $message }}</div>
         @enderror
@@ -117,6 +126,7 @@
         <input type="text" id="title" name="title" placeholder="Projekto pavadinimas" Required><br>
         
         
-        <input class="btn btn-primary" type="submit" value="Submit">
+        <input class="btn btn-primary" type="submit" value="Pridėti projektą">
     </form>
+    @endif
 @endsection
