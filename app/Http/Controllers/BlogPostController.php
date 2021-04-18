@@ -64,7 +64,7 @@ class BlogPostController extends Controller
     public function update($id, Request $request){
         // [Dėmesio] validacijoje unique turi būti teisingas lentelės pavadinimas!
         if(Gate::denies('update-post', Blogpost::find($id))) // useris paduodamas automatiškai!!!
-        return redirect()->back()->with('status_error', 'Negalite ištrinti šio projekto!');
+        return redirect()->back()->with('status_error', 'Negalite atnaujinti šio projekto!');
 
                 $this->validate($request, [
                     'title' => 'required|unique:blogposts,title,'.$id.',id',

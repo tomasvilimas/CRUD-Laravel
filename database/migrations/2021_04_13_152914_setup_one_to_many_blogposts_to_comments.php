@@ -15,7 +15,7 @@ class SetupOneToManyBlogpostsToComments extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->unsignedBigInteger('blogpost_id'); // FK collumn
-            $table->foreign('blogpost_id')->references('id')->on('blogposts')->onDelete('cascade')->onUpdate('restrict'); // Apribojimas
+            $table->foreign('blogpost_id')->references('id')->on('blogposts')->onDelete('cascade'); // Apribojimas
 
         });
     }

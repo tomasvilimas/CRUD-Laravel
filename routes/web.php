@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('about');
 
-Route::get('/comments', function () {
-    return view('comments');
-})->name('comments');
+// Route::get('/darbuotojai', function () {
+//     return view('darbuotojai');
+// })->name('darbuotojai');
+
+
 
 Route::get('/1', function () {
     return "<h1>Hello</h1>";
@@ -47,6 +50,12 @@ Route::post('/posts', [BlogPostController::class, 'store'])->name('posts.store')
 Route::delete('/posts/{id}', [BlogPostController::class, 'destroy'])->name('posts.destroy');
 Route::put('/posts/{id}', [BlogPostController::class, 'update'])->name('posts.update');
 Route::post('/posts/{id}/comments', [BlogPostController::class, 'storePostComment'])->name('posts.comments.store');
+
+Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+Route::get('/comments/{id}', [CommentController::class, 'show'])->name('comments.show');
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
 
 

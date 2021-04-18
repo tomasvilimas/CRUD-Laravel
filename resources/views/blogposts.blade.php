@@ -3,14 +3,6 @@
 
 
 
-    {{-- @if ($errors->any())
-  <div>
-      @foreach ($errors->all() as $error)
-          <p style="color: red">{{ $error }}</p>
-      @endforeach
-  </div>
-@endif --}}
-
 
 
     @if (session('status_success'))
@@ -54,12 +46,12 @@
                             @method('DELETE') @csrf
                             <input class="btn btn-danger" type="submit" value="DELETE"> 
                         </form>
-                        
+                        @endif
                         &nbsp;
                         <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
                             <input class="btn btn-primary" type="submit" value="UPDATE">
                         </form>
-                        @endif
+                        
                         <td>
                         {{ $post['user']['name'] }} </p>
                         </td>
