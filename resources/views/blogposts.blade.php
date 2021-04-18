@@ -2,6 +2,7 @@
 @section('content')
 
 
+
     @if (session('status_success'))
         <p style="color: green"><b>{{ session('status_success') }}</b></p>
     @else
@@ -37,24 +38,25 @@
                     <td>
                         @if (auth()->check())
 
-                            <div class="btn-group" style="overflow: auto">
-                                @if (auth()->user()->id === $post['user_id'])
-                                    <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}"
-                                        method="POST">
-                                        @method('DELETE') @csrf
-                                        <input class="btn btn-danger" type="submit" value="DELETE">
-                                    </form>
-                                @endif
-                                &nbsp;
-                                <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
-                                    <input class="btn btn-primary" type="submit" value="UPDATE">
+                        @endif
+                      
+                        <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
+                            <input class="btn btn-primary" type="submit" value="UPDATE">
+                        </form>
+                        &nbsp;
+                        <div class="btn-group" style="overflow: auto">
+                            @if (auth()->user()->id === $post['user_id'])
+                                <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}"
+                                    method="POST">
+                                    @method('DELETE') @csrf
+                                    <input class="btn btn-danger" type="submit" value="DELETE">
                                 </form>
-
+                                @endif
                     <td>
                         {{ $post['user']['name'] }} </p>
                     </td>
                     </div>
-            @endif
+            
             </td>
             </tr>
             @endforeach

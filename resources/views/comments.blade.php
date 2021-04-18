@@ -30,19 +30,15 @@
                     </td>
                     <td>
                         @if (auth()->check())
-
+                            <form style='float: left;' action="{{ route('comments.show', $comment['id']) }}" method="GET">
+                                <input class="btn btn-primary" type="submit" value="UPDATE">
+                            </form>
+                            &nbsp;
                             <div class="btn-group" style="overflow: auto">
-                                {{-- @if (auth()->user()->id === $post['user_id']) --}}
                                 <form style='float: left;' action="{{ route('comments.destroy', $comment['id']) }}"
                                     method="POST">
                                     @method('DELETE') @csrf
                                     <input class="btn btn-danger" type="submit" value="DELETE">
-                                </form>
-
-                                &nbsp;
-                                <form style='float: left;' action="{{ route('comments.show', $comment['id']) }}"
-                                    method="GET">
-                                    <input class="btn btn-primary" type="submit" value="UPDATE">
                                 </form>
                             </div>
                         @endif
