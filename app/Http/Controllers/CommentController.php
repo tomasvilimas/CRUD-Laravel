@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
-
-
-
-
     public function index()
     {
         return view('comments', ['comments' => Comment::all()]);
@@ -29,19 +25,13 @@ class CommentController extends Controller
     {
         $this->validate($request, [
             'text' => 'required|unique:comments',
-
         ]);
-
         $bp = new Comment();
         $bp->text = $request['text'];
-        $bp->blogpost_id = auth()->user()->id; // Trying to get property 'id' of non-object
-       
-
-        // if ($bp->title == NULL or $bp->text == NULL)
-        //     return redirect('/posts')->with('status_error', 'Post was not created!');
+        $bp->blogpost_id = $request['blogpost_id'];
         return ($bp->save() == 1) ?
-            redirect('/comments')->with('status_success', 'Projektas sukurtas!') :
-            redirect('/comments')->with('status_error', 'Projektas nesukurtas!');
+            redirect('/comments')->with('status_success', 'Darbuotojas sukurtas!') :
+            redirect('/comments')->with('status_error', 'Darbuotojas nesukurtas!');
     }
 
 
@@ -49,5 +39,20 @@ class CommentController extends Controller
     {
         Comment::destroy($id);
         return redirect('/comments')->with('status_success', 'Darbuotojas ištrintas!');
+    }
+
+    public function update($id, Request $request)
+    {
+
+
+
+        $this->validate($request, [
+            'text' => 'required|unique:comments,text,' . $id . ',id',
+        ]);
+        $bp = Comment::find($id);
+        $bp->text = $request['text'];
+        return ($bp->save() !== 1) ?
+            redirect('/comments/' . $id)->with('status_success', 'Darbuotojas atnaujintas!') :
+            redirect('/comments/' . $id)->with('status_error', 'Darbuotojas nebuvo atnaujintas!');
     }
 }
