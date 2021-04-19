@@ -1,28 +1,28 @@
-Download Zip
-Place folder into your www folder
-Open with VSC or other program
-Run:  php composer.phar require laravel/ui 
-Run: npm install && npm run dev
-Rename file .env.example to .env
+Download Zip<br />
+Place folder into your www folder<br />
+Open with VSC or other program<br />
+Run:  php composer.phar require laravel/ui <br />
+Run: npm install && npm run dev<br />
+Rename file .env.example to .env<br />
 
-.env file info:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=sprint5
-DB_USERNAME=root
-DB_PASSWORD=mysql
+.env file info:<br />
+DB_CONNECTION=mysql<br />
+DB_HOST=127.0.0.1<br />
+DB_PORT=3306<br />
+DB_DATABASE=sprint5<br />
+DB_USERNAME=root<br />
+DB_PASSWORD=mysql<br />
 
-Create schema in MySQL Workbench named: sprint5
-Run php artisan migrate( one error will be shown- thats ok)
-Then run: php artisan db:seed
-Then run again: php artisan migrate
-Run: php artisan key:generate
-Run php artisan serve
-Open in your browser  http://127.0.0.1:8000/
-Login info:
-Name: Admin	
-Password: Neatspejamas
+Create schema in MySQL Workbench named: sprint5<br />
+Run php artisan migrate( one error will be shown- thats ok)<br />
+Then run: php artisan db:seed<br />
+Then run again: php artisan migrate<br />
+Run: php artisan key:generate<br />
+Run php artisan serve<br />
+Open in your browser  http://127.0.0.1:8000/<br />
+Login info:<br />
+Name: Admin	<br />
+Password: Neatspejamas<br />
 
 
 
