@@ -19,7 +19,7 @@ class TieBlogpostsToUsers extends Migration
             //         ->references('id')
             //         ->on('users')->onDelete('cascade');
 
-            $admin_uid = DB::table('users')->where('name', '=', 'Tomasas')->first('id');
+            $admin_uid = DB::table('users')->where('name', '=', 'Admin')->first('id');
             $table->unsignedBigInteger('user_id')->default($admin_uid->id);
             $table->foreign('user_id')
                 ->references('id')->on('users')
