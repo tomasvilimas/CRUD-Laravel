@@ -1,4 +1,4 @@
-Project can be updated/deleted only by user which created it.<br />
+Project can be updated/deleted only by user which created it.  (you can see which author created the project, but only when your are logged in)<br />
 Anyone can update and delete employees<br />
 
 
