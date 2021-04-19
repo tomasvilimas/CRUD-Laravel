@@ -1,8 +1,8 @@
 Download Zip<br />
 Place folder into your www folder<br />
 Open with VSC or other program<br />
-Run:  <b>php composer.phar require laravel/ui <br /><b>
-Run: <b>npm install && npm run dev<br /><b>
+Run:  <b> php composer.phar require laravel/ui <br /> <b>
+Run: <b> npm install && npm run dev<br /> <b>
 Rename file .env.example to .env<br />
 
 .env file info:<br />
