@@ -12,4 +12,4 @@
 
         <input class="btn btn-primary" type="submit" value="UPDATE">
     </form>
-@endsection
+    @endsection

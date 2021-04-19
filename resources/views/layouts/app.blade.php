@@ -34,14 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                  
-                            <li class="nav-item {{ Request::routeIs('index') ? 'active' : '' }}">
-                              <a class="nav-link" href="/">Home</span></a>
-                            </li>
-                            {{-- <li class="nav-item {{ Request::routeIs('about') ? 'active' : '' }}">
-                              <a class="nav-link" href="{{ route('about') }}">About</a>
-                            </li> --}}
-                            
-                          <li class="nav-item {{ Request::routeIs('posts.index') ? 'active' : '' }}">
+                            <li class="nav-item {{ Request::routeIs('posts.index') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('posts.index')}}">Projektai</a>
                           </li>
                           <li class="nav-item {{ Request::routeIs('comments.index') ? 'active' : '' }}">

@@ -36,75 +36,36 @@
 
                     </td>
                     <td>
+
+
+
                         @if (auth()->check())
 
-                        @endif
-                      
-                        <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
-                            <input class="btn btn-primary" type="submit" value="UPDATE">
-                        </form>
-                        &nbsp;
-                        <div class="btn-group" style="overflow: auto">
-                            @if (auth()->user()->id === $post['user_id'])
-                                <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}"
-                                    method="POST">
-                                    @method('DELETE') @csrf
-                                    <input class="btn btn-danger" type="submit" value="DELETE">
-                                </form>
+                            <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
+                                <input class="btn btn-primary" type="submit" value="UPDATE">
+                            </form>
+                            &nbsp;
+                            <div class="btn-group" style="overflow: auto">
+                                @if (auth()->user()->id === $post['user_id'])
+                                    <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}"
+                                        method="POST">
+                                        @method('DELETE') @csrf
+                                        <input class="btn btn-danger" type="submit" value="DELETE">
+                                    </form>
                                 @endif
+
                     <td>
                         {{ $post['user']['name'] }} </p>
-                    </td>
-                    </div>
-            
+            @endif
+            </td>
+            </div>
+
             </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {{-- <p style="font-size: 10px">Comment count: {{ count($post->comments) }} 
-            | <a href="{{ route('posts.show', $post['id']) }}">View post details and comment on it</a></p> --}}
-
-
-
-    {{-- <form action="{{ route('posts.destroy', $post['id']) }}" method="POST">
-            @method('DELETE') @csrf
-            <input class="btn btn-danger" type="submit" value="DELETE">
-        </form>
-        <form action="{{ route('posts.show', $post['id']) }}" method="GET">
-            <input class="btn btn-primary" type="submit" value="UPDATE">
-        </form> --}}
-    {{-- @if (auth()->check())
-        <div class="btn-group" style="overflow: auto">
-            <form style='float: left;' action="{{ route('posts.destroy', $post['id']) }}" method="POST">
-                @method('DELETE') @csrf
-                <input class="btn btn-danger" type="submit" value="DELETE"> 
-            </form>
-            &nbsp;
-            <form style='float: left;' action="{{ route('posts.show', $post['id']) }}" method="GET">
-                <input class="btn btn-primary" type="submit" value="UPDATE">
-            </form>
-        </div>
-        @endif --}}
-
-
     <hr>
-
-
     <br>
     @if (auth()->check())
         <form method="POST" action="/posts">

@@ -16,33 +16,9 @@ use App\Http\Controllers\CommentController;
 */
 
 
-// Route::get('/blogposts', function () {})->name('blogposts/index');
-
-Route::get('/', function () {
-    return view('welcome');
-})->name('index');
-
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
-
-// Route::get('/darbuotojai', function () {
-//     return view('darbuotojai');
-// })->name('darbuotojai');
 
 
-
-Route::get('/1', function () {
-    return "<h1>Hello</h1>";
-});
-
-// /{1} ;; /{jonas}
-// Route::get('/{text}', function($x) {
-//     return "Sveikas, "  . $x;
-// });
-
-// Route::get('/posts', 'App\Http\Controllers\BlogPostController@index');
-// Route::get('/posts/{id}', 'App\Http\Controllers\BlogPostController@show');
+Route::get('/', [BlogPostController::class, 'index'])->name('posts.index');
 
 Route::get('/posts', [BlogPostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{id}', [BlogPostController::class, 'show'])->name('posts.show');
@@ -57,22 +33,6 @@ Route::post('/comments', [CommentController::class, 'store'])->name('comments.st
 Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::put('/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
 
-
-
-
-// Route::get('/db', function () {
-//     var_dump(DB::connection()->getPdo());
-//  })->name('testdb');
-
-// use App\Models\BlogPost;
-// Route::get('/bp', function () {
-//     $bp = new BlogPost();
-//     $bp->title = "Bp 1";
-//     $bp->text = "Bp text 1";
-//     $bp->save();
-//     return BlogPost::where('title', 'Bp 1')->first();
-//     // return BlogPost::all();
-// });
 
 Auth::routes();
 
