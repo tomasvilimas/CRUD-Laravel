@@ -1,8 +1,8 @@
 Download Zip<br />
 Place folder into your www folder<br />
 Open with VSC or other program<br />
-Run:  <b> php composer.phar require laravel/ui <br /> <b>
-Run: <b> npm install && npm run dev<br /> <b>
+Run:  <b> php composer.phar require laravel/ui <br /> </b>
+Run: <b> npm install && npm run dev<br /> </b>
 Rename file .env.example to .env<br />
 
 .env file info:<br />
@@ -14,7 +14,7 @@ DB_USERNAME=root<br />
 DB_PASSWORD=mysql<br />
 
 Create schema in MySQL Workbench named: sprint5<br />
-Run:<b> php artisan migrate<b>( one error will be shown- thats ok)<br />
+Run:<b> php artisan migrate</b>( one error will be shown- thats ok)<br />
 Then run:<b> php artisan db:seed<br /><b>
 Then run again:<b> php artisan migrate<br /><b>
 Run: <b>php artisan key:generate<br /><b>
