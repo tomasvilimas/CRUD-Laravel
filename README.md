@@ -15,10 +15,10 @@ DB_PASSWORD=mysql<br />
 
 Create schema in MySQL Workbench named: sprint5<br />
 Run:<b> php artisan migrate</b>( one error will be shown- thats ok)<br />
-Then run:<b> php artisan db:seed<br /><b>
-Then run again:<b> php artisan migrate<br /><b>
-Run: <b>php artisan key:generate<br /><b>
-Run: <b>php artisan serve<br /><b>
+Then run:<b> php artisan db:seed<br /></b>
+Then run again:<b> php artisan migrate<br /></b>
+Run: <b>php artisan key:generate<br /></b>
+Run: <b>php artisan serve<br /></b>
 Open in your browser  http://127.0.0.1:8000/<br />
 Login info:<br />
 Name: Admin	<br />
